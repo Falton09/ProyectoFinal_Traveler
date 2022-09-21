@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+<title>TRAVELER - Busqueda</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+    
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <div class="card border-0">
+                   <div class="mb-3 mb-md-0">
+                        <div class="col-md-3">
+                        
+                            <form action="" method="GET">
+                                <input type="text" class="form-row" placeholder="Buscar" name="buscar">
+                                <span class="input-group">
+                                    <button type="submit">Buscar</button
+                                </span>
+                            </form>
+
+                        </div>
+                    </div>
+                            <h5>Tu Busqueda</h5>
+                            {% for hotel in hotel %}
+                                Fuiste al Hotel: {{hotel}}, Con {{hotel.num_personas}} personas, del dia: {{hotel.dia_entrada}} al {{hotel.dia_salida}}
+                                <br>
+                            {% endfor %}
+                            {% for vuelo in vuelo %}
+                                Fuiste al {{vuelo}}, Con {{vuelo.num_personas}} personas, el dia {{ vuelo.fecha_salida }} al {{vuelo.fecha_regreso}}
+                                <br>
+                            {% endfor %}
+
+                            <h5>Todos Tus Hoteles</h5>
+                            {% for hoteles in hoteles %}
+                                {{hoteles}}
+                                <br>
+                            {% endfor %} 
+                            <h5>Todos Tus Vuelos</h5>
+                            {% for vuelos in vuelos %}
+                                {{vuelos}}
+                                <br>
+                            {% endfor %} 
+                </div>       
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+
+{% endblock %}
