@@ -1,6 +1,6 @@
 from datetime import datetime
 from django import forms
-from AppTravel.models import Hotel, NombreDestino, NombreHotel, Vuelos
+from AppTravel.models import Hotel, NombreDestino, NombreHotel, Vuelo
 
 
 
@@ -21,7 +21,7 @@ class ReservaHotel(forms.Form):
 
 
 class BusquedaVuelos(forms.Form):
-    destino = forms.ModelChoiceField(queryset=Vuelos.objects.all(),label=("Vuelos"))
+    destino = forms.ModelChoiceField(queryset=Vuelo.objects.all(),label=("Vuelos"))
 
 class BusquedaResevas(forms.Form):
     nombreH = forms.ModelChoiceField(queryset=Hotel.objects.all(),label=("Hoteles"))
