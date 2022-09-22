@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from UserTravel.forms import UserRegisterForm, AvatarForm,Testimonios
+from UserTravel.forms import UserEditFrom, UserRegisterForm, AvatarForm,Testimonios
 from UserTravel.models import Avatar,Testimonio
 
 
@@ -107,34 +107,34 @@ def perfil(request):
 
 def editar_usuario(request):
     usuario = request.user
-    email=request.user.email
+    
     if request.method == 'POST':
 
-       
-        form = UserRegisterForm(request.POST)
+        form = UserEditFrom(request.POST)
 
         if form.is_valid():
 
             data = form.cleaned_data
 
-            usuario.username = data.get('username')
-            email = data.get('email')
-            usuario.password1 = data.get('password1')
-            usuario.password2 = data.get('password2')
+            usuario.username = data.get['username']
+            usuario.email = data.get['email']
+            usuario.password1 = data.get['password1']
+            usuario.password2 = data.get['password1']
             usuario.save()
 
-            messages.info(request, 'Tu usuario fue registrado satisfactoriamente!')
-        else:
-            messages.info(request, 'Tu usuario no puso ser registrado!')
-        return redirect('AppTravelInicio')
+            
+        
+            return redirect('UserTravelPerfil')
     contexto = {
-        'form': UserRegisterForm(
+        'usuario':usuario,
+        'form': UserEditFrom(
             initial={
                 'username': usuario.username,
-                'email': email,
-                
-            }),
-        'titulo':"TRAVELER - Editar",
+                'email': usuario.email,
+                'usuario': usuario               
+            }            
+        ),
+        'titulo':"TRAVELER - Editar Usuario",
         'subtitulo':"Editar Usuario",
         'boton': "Editar"
     }
