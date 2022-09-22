@@ -7,6 +7,6 @@ urlpatterns = [
     path('vuelos/',vuelo, name='AppTravelVuelos'),
     path('reservahotel/',reserva_hotel, name='AppTravelReservaHotel'),
     path('busqueda/',busqueda, name='AppTravelBusqueda'),
-    path('testimonio/', testimonio, name= 'AppTravelTestimonio'),
+    #path('testimonio/', testimonio, name= 'AppTravelTestimonio'),
 
 ]
