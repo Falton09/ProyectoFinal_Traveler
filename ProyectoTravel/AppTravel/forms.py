@@ -26,5 +26,3 @@ class BusquedaVuelos(forms.Form):
 class BusquedaResevas(forms.Form):
     nombreH = forms.ModelChoiceField(queryset=Hotel.objects.all(),label=("Hoteles"))
 
-class Testimonio(forms.Form):
-    texto = forms.CharField(max_length=50,widget=forms.Textarea)
