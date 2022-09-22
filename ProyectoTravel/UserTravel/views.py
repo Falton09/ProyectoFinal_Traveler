@@ -104,6 +104,7 @@ def perfil(request):
 
     return render(request, "UserTravel/perfil.html")
 
+
 def editar_usuario(request):
     usuario = request.user
     email=request.user.email
@@ -140,3 +141,33 @@ def editar_usuario(request):
     }
 
     return render(request, 'UserTravel/base_plantilla.html', contexto)
+
+
+
+def testimonio(request):
+
+    if request.method == 'POST':
+        mi_formulario = Testimonio(request.POST)
+
+        if mi_formulario.is_valid():
+
+            data = mi_formulario.cleaned_data
+            user = request.user
+            
+
+            testimonio1 = Testimonio(user=user,texto=data.get('texto'))
+            testimonio1.save()
+
+            return redirect('UserTravelPerfil')
+   
+    contexto = {
+        'form': Testimonio(),        
+        'titulo':"TRAVELER - Testimonio",
+        'subtitulo':"Testimonio",
+        'boton': "Agregar"
+        
+    }
+
+
+    return render(request, 'UserTravel/base_plantilla.html',contexto)
+

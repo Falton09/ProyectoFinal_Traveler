@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from AppTravel.forms import NuevoVuelo, ReservaHotel, Testimonio
+from AppTravel.forms import NuevoVuelo, ReservaHotel
 from AppTravel.models import Hotel,Vuelo
 from UserTravel.models import Testimonio
 from django.contrib.auth.models import User
@@ -104,32 +104,6 @@ def busqueda(request):
     return render(request, 'AppTravel/busqueda.html',contexto)
 
 
-def testimonio(request):
-
-    if request.method == 'POST':
-        mi_formulario = Testimonio(request.POST)
-
-        if mi_formulario.is_valid():
-
-            data = mi_formulario.cleaned_data
-            user = request.user
-            
-
-            testimonio1 = Testimonio(user=user,texto=data.get('texto'))
-            testimonio1.save()
-
-            return redirect('UserTravelPerfil')
-   
-    contexto = {
-        'form': Testimonio(),        
-        'titulo':"TRAVELER - Testimonio",
-        'subtitulo':"Testimonio",
-        'boton': "Agregar"
-        
-    }
-
-
-    return render(request, 'UserTravel/base_plantilla.html',contexto)
 
 
 

@@ -21,5 +21,5 @@ class AvatarForm(forms.ModelForm):
         model = Avatar
         fields = ['imagen']
 
-class Testimonio(forms.Form):
+class Testimonios(forms.Form):
     texto = forms.CharField(max_length=50,widget=forms.Textarea)
