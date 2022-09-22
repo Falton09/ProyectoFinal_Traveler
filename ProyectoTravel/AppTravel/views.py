@@ -13,6 +13,7 @@ def inicio(request):
     testimonios = Testimonio.objects.all()
     contexto={'testimonios':testimonios}
 
+
     return render(request, 'index.html',contexto)
 
 #se crea el formulario de Vuelo del usuario

@@ -11,3 +11,4 @@ class Avatar(models.Model):
 class Testimonio(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     texto = models.TextField(max_length=50)
+

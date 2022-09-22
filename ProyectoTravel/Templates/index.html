@@ -87,20 +87,25 @@
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h6>
                 <h1>Que Dicen Nuestros Clientes</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                {% for testimonio in testimonios %}
-                <div class="text-center pb-4">
-                    <img class="img-fluid mx-auto" src="{{ testimonio.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
-                    <div class="testimonial-text bg-white p-4 mt-n5">        
+            <form action="" method="GET">
+                <div class="owl-carousel testimonial-carousel">
+    
+                    {% for testimonio in testimonios %}
                         
-                        <p class="mt-5">{{testimonio.texto}}</p>
-                        <h5 class="text-truncate">{{testimonio.user}}</h5>
-                                                
-                                                
-                    </div>
+                        <a href="{% url 'UserTravelChatTestimonio' testimonio.id %}">
+                            <div class="text-center pb-4" type="button">
+                                <img class="img-fluid mx-auto" src="{{ testimonio.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
+                                <div class="testimonial-text bg-white p-4 mt-n5">        
+                                    
+                                    <p class="mt-5">{{testimonio.texto}}</p>
+                                    <h5  class="text-truncate">{{testimonio.user}}</h5>
+                      
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
+            </form>
         </div>
     </div>
     <!-- Testimonial End -->

@@ -76,8 +76,9 @@ def subir_avatar(request):
         if formulario.is_valid():
 
             data = formulario.cleaned_data
-            avatar = Avatar.objects.filter(user=data.get("usuario"))
+            
             user = request.user
+            avatar = Avatar.objects.filter(user=user)
 
             if len(avatar) > 0:
                 avatar = avatar[0]
@@ -88,7 +89,7 @@ def subir_avatar(request):
                 avatar = Avatar(user=user, imagen=data.get("imagen"))
                 avatar.save()
 
-        return redirect("AppTravelInicio")
+                return redirect("AppTravelInicio")
 
     contexto = {
         "form": AvatarForm(),
@@ -116,10 +117,8 @@ def editar_usuario(request):
 
             data = form.cleaned_data
 
-            usuario.username = data.get['username']
-            usuario.email = data.get['email']
-            usuario.password1 = data.get['password1']
-            usuario.password2 = data.get['password1']
+            usuario.username = data['username']
+            usuario.email = data['email']
             usuario.save()
 
             
@@ -170,3 +169,13 @@ def testimonio(request):
 
     return render(request, 'UserTravel/base_plantilla.html',contexto)
 
+def chatestimonio(request,id):
+    chattest=Testimonio.objects.get(id=id)
+
+    
+
+
+
+    contexto={'testimonios':chattest}
+
+    return render(request, 'UserTravel/chat_testimonio.html',contexto)

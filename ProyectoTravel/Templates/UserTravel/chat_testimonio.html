@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>{{titulo}}</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+ <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+
+ 
+                        
+                    {{testimonios.id}}
+                    <br>
+                    {{testimonios.user}}
+                    <br>
+                    {{testimonios.texto}} 
+
+
+
+                </div>
+            </div>
+</div>
+{% endblock %}

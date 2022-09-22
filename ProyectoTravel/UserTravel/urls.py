@@ -11,5 +11,6 @@ urlpatterns = [
     path('perfil/', perfil, name= 'UserTravelPerfil'),
     path('edit_usu/', editar_usuario, name= 'UserTravelEditarUsu'),
     path('testimonio/', testimonio, name= 'UserTravelTestimonio'),
+    path('chattestimonio/<int:id>', chatestimonio, name= 'UserTravelChatTestimonio'),
     
 ]
