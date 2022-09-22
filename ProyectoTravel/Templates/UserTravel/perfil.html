@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+<title>TRAVELER - Perfil</title>
+{% endblock %}
+{% block inicio %}
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                                           
+                    <a href="{% url 'UserTravelAvatar'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Poner Avatar</a>
+                    <a href="{% url 'UserTravelEditarUsu'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Editar Usuario</a>
+                    <a href="{% url 'AppTravelTestimonio'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Agregar Testimonio</a>
+
+                    
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -3,8 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from UserTravel.forms import UserRegisterForm, AvatarForm
-from UserTravel.models import Avatar
+from UserTravel.forms import UserRegisterForm, AvatarForm,Testimonios
+from UserTravel.models import Avatar,Testimonio
 
 
 
@@ -68,7 +68,7 @@ def registro(request):
 
 
 
-def subir_avatar(request):# parece todo en regal, pero no me muestra la foto en la pagina
+def subir_avatar(request):
     if request.method == "POST":
 
         formulario = AvatarForm(request.POST, request.FILES)
@@ -128,7 +128,6 @@ def editar_usuario(request):
             messages.info(request, 'Tu usuario no puso ser registrado!')
         return redirect('AppTravelInicio')
     contexto = {
-        # 'form': UserCreationForm(),
         'form': UserRegisterForm(
             initial={
                 'username': usuario.username,
@@ -147,7 +146,7 @@ def editar_usuario(request):
 def testimonio(request):
 
     if request.method == 'POST':
-        mi_formulario = Testimonio(request.POST)
+        mi_formulario = Testimonios(request.POST)
 
         if mi_formulario.is_valid():
 
@@ -161,7 +160,7 @@ def testimonio(request):
             return redirect('UserTravelPerfil')
    
     contexto = {
-        'form': Testimonio(),        
+        'form': Testimonios(),        
         'titulo':"TRAVELER - Testimonio",
         'subtitulo':"Testimonio",
         'boton': "Agregar"
