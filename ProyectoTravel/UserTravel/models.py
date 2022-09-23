@@ -20,6 +20,9 @@ class Testimonio(models.Model):
        return f"{self.titulo}\n{self.texto}\n{self.fecha_publicacion}"
 
 
-# class ComentarioTestimonio(models.Model):
-#     id_testimonio = models.ForeignKey(Testimonio, on_delete=models.CASCADE, null=True)
-#     user_comentario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+class ComentarioTestimonio(models.Model):
+    id_testimonio = models.ForeignKey(Testimonio, on_delete=models.CASCADE, null=True)
+    user_comentario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    comentario= RichTextField()
+    fecha_comentario = models.DateTimeField(default=datetime.now())
+

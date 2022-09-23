@@ -2,7 +2,7 @@ from dataclasses import field
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from UserTravel.models import Avatar, Testimonio
+from UserTravel.models import Avatar, Testimonio,ComentarioTestimonio
 
 
 class UserRegisterForm(UserCreationForm):
@@ -27,6 +27,14 @@ class Testimonios(forms.ModelForm):
     class Meta:
         model = Testimonio
         fields=['titulo','texto']
+
+class Comentario(forms.ModelForm):
+    
+    class Meta:
+        model = ComentarioTestimonio
+        fields=['comentario']
+
+
 
 
 class UserEditFrom(forms.Form):

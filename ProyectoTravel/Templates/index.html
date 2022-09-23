@@ -98,7 +98,7 @@
                     {% for testimonio in testimonios %}
                         
                         <a href="{% url 'UserTravelChatTestimonio' testimonio.id %}">
-                            <div class="text-center pb-4" type="button">
+                            <div class="text-center pb-4" >
                                 <img class="img-fluid mx-auto" src="{{ testimonio.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
                                 <h4>{{testimonio.titulo}}</h4>
                                 <div class="testimonial-text bg-white p-4 mt-n5">        

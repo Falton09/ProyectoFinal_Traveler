@@ -3,8 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from UserTravel.forms import UserEditFrom, UserRegisterForm, AvatarForm,Testimonios
-from UserTravel.models import Avatar,Testimonio
+from UserTravel.forms import UserEditFrom, UserRegisterForm, AvatarForm,Testimonios,Comentario
+from UserTravel.models import Avatar,Testimonio,ComentarioTestimonio
 
 
 
@@ -143,7 +143,8 @@ def editar_usuario(request):
 
 
 def testimonio(request):
-    testimonio=Testimonio.objects.all()
+    user1 = request.user
+    testimonio=Testimonio.objects.filter(user=user1)
     if request.method == 'POST':
         mi_formulario = Testimonios(request.POST)
 
@@ -193,9 +194,6 @@ def edit_testimonio(request,id):
                 'texto': edit_test.texto,
             }
         ),       
-        'titulo':"TRAVELER - Testimonio",
-        'subtitulo':"Testimonio",
-        'boton': "Editar"
         
     }
     return render(request, 'UserTravel/crear_testimonio.html', contexto)
@@ -211,11 +209,27 @@ def eliminar_testimonio(request, id):
 
 def chatestimonio(request,id):
     chattest=Testimonio.objects.get(id=id)
+    mostrar_coment=ComentarioTestimonio.objects.filter(id=id)
 
-    
+    if request.method == 'POST':
+        mi_formulario = Comentario(request.POST)
+
+        if mi_formulario.is_valid():
+
+            data = mi_formulario.cleaned_data
+            user = request.user
+            
+
+            comentario1 = ComentarioTestimonio(id_testimonio=chattest,user_comentario=user,comentario=data.get('comentario'))
+            comentario1.save()
+
+            return redirect('AppTravelInicio')
 
 
-
-    contexto={'testimonios':chattest}
+    contexto={
+        'form':Comentario(),
+        'testimonios':chattest,
+        'comentario': mostrar_coment,
+    }
 
     return render(request, 'UserTravel/chat_testimonio.html',contexto)
