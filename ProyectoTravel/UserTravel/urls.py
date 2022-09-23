@@ -12,5 +12,7 @@ urlpatterns = [
     path('edit_usu/', editar_usuario, name= 'UserTravelEditarUsu'),
     path('testimonio/', testimonio, name= 'UserTravelTestimonio'),
     path('chattestimonio/<int:id>', chatestimonio, name= 'UserTravelChatTestimonio'),
+    path('edit_testimonio/<int:id>', edit_testimonio, name= 'UserTravelEditarTestimonio'),
+    path('eliminar_testimonio/<int:id>', eliminar_testimonio, name= 'UserTravelEliminarTestimonio'),
     
 ]

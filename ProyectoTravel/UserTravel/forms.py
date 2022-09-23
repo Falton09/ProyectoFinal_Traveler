@@ -23,10 +23,10 @@ class AvatarForm(forms.ModelForm):
         fields = ['imagen']
 
 class Testimonios(forms.ModelForm):
-    #texto = forms.CharField(max_length=50,widget=forms.Textarea)
+    
     class Meta:
         model = Testimonio
-        fields=['texto']
+        fields=['titulo','texto']
 
 
 class UserEditFrom(forms.Form):

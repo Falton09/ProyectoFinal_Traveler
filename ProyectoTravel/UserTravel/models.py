@@ -12,8 +12,13 @@ class Avatar(models.Model):
 
 class Testimonio(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    titulo = models.CharField(max_length=50, null=True)
     texto = RichTextField()
     fecha_publicacion = models.DateTimeField(default=datetime.now())
+    
+    def __str__(self):
+       return f"{self.titulo}\n{self.texto}\n{self.fecha_publicacion}"
+
 
 # class ComentarioTestimonio(models.Model):
 #     id_testimonio = models.ForeignKey(Testimonio, on_delete=models.CASCADE, null=True)

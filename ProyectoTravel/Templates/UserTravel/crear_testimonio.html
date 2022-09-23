@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>{{titulo}}</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+ <div class="container py-5">
+            <div class="row align-items-center">
+                    <div class="card border-0" >
+                        <div class="card-header bg-primary text-center p-4 ">
+                            <h1 class="text-white m-0">{{subtitulo}}</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-white p-5 " >
+                            <form action="" method="POST" enctype="multipart/form-data" >
+                            {% csrf_token %}
+                               
+                                    {{ form.as_p}} 
+                               
+                                
+                                <input class="btn btn-primary btn-block" type="submit" style="height: 40px; margin-top: 10px;" value="{{boton}}">
+                            
+                            </form>  
+
+                        </div>
+                        <h2>Mis Testimonios</h2>
+                        {% for testimonio in testimonio %}
+                            {{testimonio | safe}}
+                            <a href="{% url 'UserTravelEditarTestimonio' testimonio.id %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Editar</a>
+                            <a href="{% url 'UserTravelEliminarTestimonio' testimonio.id %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Eliminar</a>
+                            
+                            <hr>
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+{% endblock %}

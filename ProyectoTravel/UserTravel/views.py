@@ -143,7 +143,7 @@ def editar_usuario(request):
 
 
 def testimonio(request):
-
+    testimonio=Testimonio.objects.all()
     if request.method == 'POST':
         mi_formulario = Testimonios(request.POST)
 
@@ -153,13 +153,14 @@ def testimonio(request):
             user = request.user
             
 
-            testimonio1 = Testimonio(user=user,texto=data.get('texto'))
+            testimonio1 = Testimonio(user=user,titulo=data.get('titulo'),texto=data.get('texto'))
             testimonio1.save()
 
             return redirect('UserTravelPerfil')
    
     contexto = {
-        'form': Testimonios(),        
+        'form': Testimonios(), 
+        'testimonio':testimonio,       
         'titulo':"TRAVELER - Testimonio",
         'subtitulo':"Testimonio",
         'boton': "Agregar"
@@ -167,7 +168,46 @@ def testimonio(request):
     }
 
 
-    return render(request, 'UserTravel/base_plantilla.html',contexto)
+    return render(request, 'UserTravel/crear_testimonio.html',contexto)
+
+
+def edit_testimonio(request,id):
+    edit_test=Testimonio.objects.get(id=id)
+
+    if request.method =='POST':
+        mi_formulario = Testimonios(request.POST)
+
+        if mi_formulario.is_valid():
+
+            data = mi_formulario.cleaned_data
+
+            edit_test.titulo = data.get('titulo')
+            edit_test.texto = data.get('texto')
+            edit_test.save()
+            return redirect('UserTravelTestimonio')
+    
+    contexto = {
+        'form': Testimonios(
+            initial={
+                'titulo': edit_test.titulo,
+                'texto': edit_test.texto,
+            }
+        ),       
+        'titulo':"TRAVELER - Testimonio",
+        'subtitulo':"Testimonio",
+        'boton': "Editar"
+        
+    }
+    return render(request, 'UserTravel/crear_testimonio.html', contexto)
+
+def eliminar_testimonio(request, id):
+    eliminar_testimonio = Testimonio.objects.get(id=id)
+    eliminar_testimonio.delete()
+
+    messages.info(request, f"El Testimonio fue eliminado")
+
+    return redirect("UserTravelTestimonio")
+
 
 def chatestimonio(request,id):
     chattest=Testimonio.objects.get(id=id)
