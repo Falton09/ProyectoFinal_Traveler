@@ -21,6 +21,7 @@ class AvatarForm(forms.ModelForm):
     class Meta:
         model = Avatar
         fields = ['imagen']
+        
 
 class Testimonios(forms.ModelForm):
     
@@ -33,6 +34,7 @@ class Comentario(forms.ModelForm):
     class Meta:
         model = ComentarioTestimonio
         fields=['comentario']
+        labels= {'comentario': (""),}
 
 
 

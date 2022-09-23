@@ -20,9 +20,5 @@ class ReservaHotel(forms.Form):
        return f"{self.nombreh}({self.destino})"
 
 
-class BusquedaVuelos(forms.Form):
-    destino = forms.ModelChoiceField(queryset=Vuelo.objects.all(),label=("Vuelos"))
 
-class BusquedaResevas(forms.Form):
-    nombreH = forms.ModelChoiceField(queryset=Hotel.objects.all(),label=("Hoteles"))
 
