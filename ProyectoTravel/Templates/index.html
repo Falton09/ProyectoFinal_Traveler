@@ -4,6 +4,11 @@
 <head>
     {% load static %}
 
+    <!-- Script de CKeditor -->
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+
     <meta charset="utf-8">
 
     {% block titulo %}
@@ -97,7 +102,7 @@
                                 <img class="img-fluid mx-auto" src="{{ testimonio.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
                                 <div class="testimonial-text bg-white p-4 mt-n5">        
                                     
-                                    <p class="mt-5">{{testimonio.texto}}</p>
+                                    <p  class="mt-5">{{testimonio.texto | truncatechars:100 | safe }}</p>
                                     <h5  class="text-truncate">{{testimonio.user}}</h5>
                       
                                 </div>
