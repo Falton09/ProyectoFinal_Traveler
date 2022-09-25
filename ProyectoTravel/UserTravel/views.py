@@ -209,7 +209,7 @@ def eliminar_testimonio(request, id):
 
 def chatestimonio(request,id):
     chattest=Testimonio.objects.get(id=id)
-    mostrar_coment=ComentarioTestimonio.objects.filter(id=id)
+    mostrar_coment=ComentarioTestimonio.objects.filter(id_testimonio=id)
 
     if request.method == 'POST':
         mi_formulario = Comentario(request.POST)
