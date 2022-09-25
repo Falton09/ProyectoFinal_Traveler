@@ -8,7 +8,7 @@
 
  <div class="container py-5">
             <div class="row align-items-center">
-                    <div class="card border-0" >
+                    <div class="col-lg" >
                         <div class="card-header bg-primary text-center p-4 ">
                             <h1 class="text-white m-0">Crear Testimonio</h1>
                         </div>
@@ -24,19 +24,7 @@
                             </form>  
 
                         </div>
-                        <div class="card-header bg-primary text-center p-4 ">
-                            <h1 class="text-white m-0">Mis Testimonios</h1>
-                        </div>
-                       
-                        {% for testimonio in testimonio %}
-                            <h3>{{testimonio.titulo}}</h3>
-                            {{testimonio.texto | safe}}
-                            <p>{{testimonio.fecha_publicacion}}</p>
-                            <a href="{% url 'UserTravelEditarTestimonio' testimonio.id %}" class="btn btn-info py-md-3 px-md-5 mt-2">Editar</a>
-                            <a href="{% url 'UserTravelEliminarTestimonio' testimonio.id %}" class="btn btn-danger py-md-3 px-md-5 mt-2" >Eliminar</a>
-                            
-                            <hr>
-                        {% endfor %}
+
                     </div>
             </div>
 </div>

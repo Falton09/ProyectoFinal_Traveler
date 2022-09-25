@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
@@ -143,8 +144,6 @@ def editar_usuario(request):
 
 
 def testimonio(request):
-    user1 = request.user
-    testimonio=Testimonio.objects.filter(user=user1)
     if request.method == 'POST':
         mi_formulario = Testimonios(request.POST)
 
@@ -161,15 +160,25 @@ def testimonio(request):
    
     contexto = {
         'form': Testimonios(), 
-        'testimonio':testimonio,       
-        'titulo':"TRAVELER - Testimonio",
-        'subtitulo':"Testimonio",
-        'boton': "Agregar"
         
     }
 
 
     return render(request, 'UserTravel/crear_testimonio.html',contexto)
+
+
+def ver_testimonios(request):
+    user = request.user
+    testimonio=Testimonio.objects.filter(user=user)
+
+     
+    contexto = {
+        'testimonio':testimonio,
+        
+    }
+    return render(request, 'UserTravel/ver_testimonios.html',contexto)
+
+
 
 
 def edit_testimonio(request,id):
@@ -233,3 +242,49 @@ def chatestimonio(request,id):
     }
 
     return render(request, 'UserTravel/chat_testimonio.html',contexto)
+
+
+def ver_comentarios(request):
+    user = request.user
+    comentario=ComentarioTestimonio.objects.filter(user_comentario=user)
+
+     
+    contexto = {
+        'comentario':comentario,
+        
+    }
+    return render(request, 'UserTravel/ver_comentarios.html',contexto)
+
+def edit_comentario(request,id):
+    edit_comen=ComentarioTestimonio.objects.get(id=id)
+
+    if request.method =='POST':
+        mi_formulario = Comentario(request.POST)
+
+        if mi_formulario.is_valid():
+
+            data = mi_formulario.cleaned_data
+
+            
+            edit_comen.comentario = data.get('comentario')
+            edit_comen.save()
+            return redirect('UserTravelVerComentarios')
+    
+    contexto = {
+        'form': Comentario(
+            initial={
+                'comentario': edit_comen.comentario,
+            }
+        ),       
+        
+    }
+    return render(request, 'UserTravel/editar_comentario.html', contexto)
+
+
+def eliminar_comentario(request,id):
+    eliminar_comentario = ComentarioTestimonio.objects.get(id=id)
+    eliminar_comentario.delete()
+
+    messages.info(request, f"El Comentario fue eliminado")
+
+    return redirect("UserTravelVerComentarios")

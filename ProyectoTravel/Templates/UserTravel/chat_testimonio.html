@@ -8,7 +8,7 @@
 
     <div class="container py-5">
         <div class="row align-items-center">
-            <div class="card border-0">
+            <div class="col-lg">
                 <div class="card-header bg-info text-center p-4 ">
                     <h1 class="text-white m-0">Testimonio de <span class="text-dark">{{testimonios.user}}</span><img class="img-fluid mx-auto" src="{{ testimonios.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" ></h1>
                 </div>
@@ -30,6 +30,7 @@
                          Fecha: {{comentario.fecha_comentario}}
                         <br>
                         <hr>
+                        <h1 class="card-header bg-primary text-center p-4 "></h1>
                     {% endfor %}
 
 
