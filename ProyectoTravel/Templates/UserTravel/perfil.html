@@ -6,10 +6,11 @@
 {% block inicio %}
         <div class="container py-5">
             <div class="row align-items-center">
-                <div class="col-lg-5">
+                <div class="col-lg">
                                            
                     <a href="{% url 'UserTravelAvatar'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Poner Avatar</a>
                     <a href="{% url 'UserTravelEditarUsu'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Editar Usuario</a>
+                    <a href="{% url 'UserTravelEditarContrasena'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Editar Contraseña</a>
                     <a href="{% url 'UserTravelTestimonio'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Agregar Testimonio</a>
                     <a href="{% url 'UserTravelVerTestimonio'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Mis Testimonios</a>
                     <a href="{% url 'UserTravelVerComentarios'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Mis Comentarios</a>

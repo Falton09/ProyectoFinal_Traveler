@@ -9,6 +9,7 @@ urlpatterns = [
     path('registro/', registro, name= 'UserTravelRegistro'),
     path('avatar/', subir_avatar, name= 'UserTravelAvatar'),
     path('perfil/', perfil, name= 'UserTravelPerfil'),
+    path('editar_contrasena/', editar_contrasena, name= 'UserTravelEditarContrasena'),
     path('edit_usu/', editar_usuario, name= 'UserTravelEditarUsu'),
     path('testimonio/', testimonio, name= 'UserTravelTestimonio'),
     path('ver_testimonios/', ver_testimonios, name= 'UserTravelVerTestimonio'),

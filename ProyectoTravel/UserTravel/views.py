@@ -1,9 +1,10 @@
 from urllib import request
 from django.shortcuts import render,redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 from UserTravel.forms import UserEditFrom, UserRegisterForm, AvatarForm,Testimonios,Comentario
 from UserTravel.models import Avatar,Testimonio,ComentarioTestimonio
 
@@ -134,6 +135,31 @@ def editar_usuario(request):
                 'usuario': usuario               
             }            
         ),
+        'titulo':"TRAVELER - Editar Usuario",
+        'subtitulo':"Editar Usuario",
+        'boton': "Editar"
+    }
+
+    return render(request, 'UserTravel/base_plantilla.html', contexto)
+
+#esto no funciona 
+def editar_contrasena(request):
+    
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request,
+                             'Your password was successfully updated!',
+                             extra_tags='alert-success')
+            
+
+            
+        
+            return redirect('UserTravelPerfil')
+    contexto = {
+        'form':PasswordChangeForm(user=request.user),
         'titulo':"TRAVELER - Editar Usuario",
         'subtitulo':"Editar Usuario",
         'boton': "Editar"
