@@ -7,6 +7,10 @@
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg">
+                    {% if user.is_superuser == 1 %}
+                        <a href="/admin/" class="btn btn-info py-md-3 px-md-5 mt-2">Administrador</a>
+                    
+                    {% endif %}
                                            
                     <a href="{% url 'UserTravelAvatar'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Poner Avatar</a>
                     <a href="{% url 'UserTravelEditarUsu'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Editar Usuario</a>
@@ -14,7 +18,7 @@
                     <a href="{% url 'UserTravelTestimonio'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Agregar Testimonio</a>
                     <a href="{% url 'UserTravelVerMiTestimonio'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Mis Testimonios</a>
                     <a href="{% url 'UserTravelVerComentarios'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Mis Comentarios</a>
-                    
+                                
                     
                 </div>
             </div>
