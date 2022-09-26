@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>Testimonio</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+    <div class="container py-5">
+            <div class="row align-items-center">
+                    <div class="col-lg" >
+                        <div class="card-header bg-info text-center p-4 ">
+                            <h1 class="text-white m-0">Testimonios</h1>
+                        </div>
+                        <br>
+                        {% for testimonios in testimonios %}
+                            <div class="card-header bg-primary text-center p-2 ">
+                                <h3 class="text-white m-0">Testimonios de {{testimonios.user}}</h3>
+                            </div>
+
+                            <h3>{{testimonios.titulo}}</h3>
+                            {{testimonios.texto | safe}}
+                            <p>{{testimonios.fecha_publicacion}}</p>
+                            <b><a href="{% url 'UserTravelChatTestimonio' testimonios.id %}">Comentar</a></b>
+                            
+                            <hr>
+                        {% endfor %}
+                    </div>
+            </div>
+    </div>
+{% endblock %}

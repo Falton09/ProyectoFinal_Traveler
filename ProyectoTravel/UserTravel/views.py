@@ -27,7 +27,7 @@ def login_request(request):
                 messages.info(request, 'Inicio de Sesion Satisfactorio!')
 
             else:
-                messages.info(request, 'Porfavor Verificar Usuario o Contrasenia!')
+                messages.info(request, 'Porfavor Verificar Usuario o Contraseña!')
         else:
             messages.info(request, 'Inicio de Sesion Fallido!')
 
@@ -97,7 +97,7 @@ def subir_avatar(request):
         "form": AvatarForm(),
         'titulo':"TRAVELER - Avatar",
         'subtitulo':"Agregar Avatar",
-        'boton': "Crear"
+        'boton': "Agregar"
         
         
     }
@@ -142,27 +142,26 @@ def editar_usuario(request):
 
     return render(request, 'UserTravel/base_plantilla.html', contexto)
 
-#esto no funciona 
-def editar_contrasena(request):
+
+def cambiar_contrasena(request):
     
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            messages.success(request,
-                             'Your password was successfully updated!',
-                             extra_tags='alert-success')
-            
+            messages.success(request,'Tu contraseña se Cambio Correctamente!', extra_tags='alert-success')
 
-            
+        else:
+            messages.info(request, 'Su contraseña no se Cambio')
+                        
         
             return redirect('UserTravelPerfil')
     contexto = {
         'form':PasswordChangeForm(user=request.user),
-        'titulo':"TRAVELER - Editar Usuario",
-        'subtitulo':"Editar Usuario",
-        'boton': "Editar"
+        'titulo':"TRAVELER - Cambiar Contraseña",
+        'subtitulo':"Cambiar Contraseña",
+        'boton': "Cambiar"
     }
 
     return render(request, 'UserTravel/base_plantilla.html', contexto)
@@ -193,7 +192,7 @@ def testimonio(request):
     return render(request, 'UserTravel/crear_testimonio.html',contexto)
 
 
-def ver_testimonios(request):
+def ver_mi_testimonios(request):
     user = request.user
     testimonio=Testimonio.objects.filter(user=user)
 
@@ -202,7 +201,17 @@ def ver_testimonios(request):
         'testimonio':testimonio,
         
     }
-    return render(request, 'UserTravel/ver_testimonios.html',contexto)
+    return render(request, 'UserTravel/ver_mi_testimonios.html',contexto)
+
+def ver_testimonios(request):
+    testimonios=Testimonio.objects.all()
+
+     
+    contexto = {
+        'testimonios':testimonios,
+        
+    }
+    return render(request, 'UserTravel/ver_testimonio.html',contexto)
 
 
 
@@ -220,7 +229,7 @@ def edit_testimonio(request,id):
             edit_test.titulo = data.get('titulo')
             edit_test.texto = data.get('texto')
             edit_test.save()
-            return redirect('UserTravelTestimonio')
+            return redirect('UserTravelPerfil')
     
     contexto = {
         'form': Testimonios(

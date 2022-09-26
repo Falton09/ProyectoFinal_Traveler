@@ -14,18 +14,18 @@
                 </div>
                         <h3>{{testimonios.titulo}}</h3>
                         <hr>
-                        {{testimonios.texto | safe}}
+                        <b>{{testimonios.texto | safe}}</b>
                         <hr>
-                        <p>Fecha: {{testimonios.fecha_publicacion}}</p>
+                        <b>Fecha: {{testimonios.fecha_publicacion}}</b>
                         <hr>
 
-                <div class="card-header bg-primary text-center p-4 ">
-                        <h5 class="text-white m-0">Comentarios</h5>
+                <div class="card-header bg-primary text-center p-3 ">
+                        <h2 class="text-white m-0">Comentarios</h2>
                 </div>
                     {% for comentario in comentario %}
                         <h3>Comentario de: {{comentario.user_comentario}} <img class="img-fluid mx-auto" src="{{ comentario.user_comentario.avatar.imagen.url }}" style="width: 80px; height: 80px;" > </h3>
                         <hr>
-                        {{comentario.comentario | safe}}
+                        <b>{{comentario.comentario | safe}}</b>
                         <hr>
                          Fecha: {{comentario.fecha_comentario}}
                         <br>
@@ -36,8 +36,9 @@
 
                     <form action="" method="POST" enctype="multipart/form-data" >
                         {% csrf_token %}
-                        <div class="card-header bg-primary text-center p-4 ">
-                            <h2 class="text-white m-0">Hacer Comentario</h2>
+                        <br>
+                        <div class="card-header bg-primary text-center p-2 ">
+                            <h5 class="text-white m-0">Hacer Comentario</h5>
                         </div>       
                         <br>
                             
