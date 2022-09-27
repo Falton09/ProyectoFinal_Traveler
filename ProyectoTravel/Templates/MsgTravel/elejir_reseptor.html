@@ -1,0 +1,10 @@
+{% for reseptor in reseptor %}
+    <a href="{% url 'MsgTravelMensaje' reseptor.username %}">
+        
+            <img class="img-fluid mx-auto" src="{{ reseptor.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
+
+                <h5  class="text-truncate">{{reseptor.username}}</h5>
+
+          
+    </a>
+{% endfor %}

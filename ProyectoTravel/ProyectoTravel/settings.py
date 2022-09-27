@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppTravel',
     'UserTravel',
+    'MsgTravel',
     'ckeditor',
 ]
 
