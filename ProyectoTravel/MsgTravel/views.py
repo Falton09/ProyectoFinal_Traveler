@@ -5,9 +5,11 @@ from django.contrib.auth.models import User
 
 def elegir_reseptor(request):
     reseptor=User.objects.all()
+    chats=Mensajeria.objects.filter(emisor=request.user)
 
     contexto = {
-        'reseptor':reseptor
+        'reseptor':reseptor,
+        'chats':chats
 
     }
     return render(request, 'MsgTravel/elejir_reseptor.html',contexto)
@@ -30,3 +32,16 @@ def mensaje(request,username):
 
     }
     return render(request, 'MsgTravel/enviar_mensaje.html',contexto)
+
+def mis_conversaciones(request):
+    
+    
+
+
+
+    contexto = {
+        
+        
+
+    }
+    return redirect(request, 'MsgTravel/elejir_reseptor.html',{'chats':chats})
