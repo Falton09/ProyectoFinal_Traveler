@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>Comentar</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg">
+                <div class="card-header bg-info text-center p-4 ">
+                    <h1 class="text-white m-0">Testimonio de <span class="text-dark">{{testimonios.user}}</span><img class="img-fluid mx-auto" src="{{ testimonios.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" ></h1>
+                </div>
+                        <h3>{{testimonios.titulo}}</h3>
+                        <hr>
+                        <b>{{testimonios.texto | safe}}</b>
+                        <hr>
+                        <b>Fecha: {{testimonios.fecha_publicacion}}</b>
+                        <hr>
+
+                <div class="card-header bg-primary text-center p-3 ">
+                        <h2 class="text-white m-0">Comentarios</h2>
+                </div>
+                    {% for comentario in comentario %}
+                        <h3>Comentario de: {{comentario.user_comentario}} <img class="img-fluid mx-auto" src="{{ comentario.user_comentario.avatar.imagen.url }}" style="width: 80px; height: 80px;" > </h3>
+                        <hr>
+                        <b>{{comentario.comentario | safe}}</b>
+                        <hr>
+                         Fecha: {{comentario.fecha_comentario}}
+                        <br>
+                        <hr>
+                        <h1 class="card-header bg-primary text-center p-4 "></h1>
+                    {% endfor %}
+
+
+                    <form action="" method="POST" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        <br>
+                        <div class="card-header bg-primary text-center p-2 ">
+                            <h5 class="text-white m-0">Hacer Comentario</h5>
+                        </div>       
+                        <br>
+                            
+                            {{ form }} 
+                                
+                                    
+                        <input class="btn btn-primary btn-block" type="submit" style="height: 40px; margin-top: 10px;" value="Enviar Comentario">
+                                
+                    </form>     
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

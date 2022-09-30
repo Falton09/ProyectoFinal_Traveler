@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>{{titulo}}</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+ <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="card border-0">
+                        <div class="card-header bg-primary text-center p-4">
+                            <h1 class="text-white m-0">{{subtitulo}}</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-white p-5">
+                            <form action="" method="POST" enctype="multipart/form-data" >
+                            {% csrf_token %}
+                               
+                                    {{ form.as_p}} 
+                               
+                                
+                                <input class="btn btn-primary btn-block" type="submit" style="height: 40px; margin-top: 10px;" value="{{boton}}">
+                            
+                            </form>  
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+    

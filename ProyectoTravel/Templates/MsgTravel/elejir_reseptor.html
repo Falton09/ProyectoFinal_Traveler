@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>Empezar Conversacion</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg">
+                <div class="card border-0">
+                    <div class="card-header bg-success text-center p-4">
+                        <h2 class="text-white m-0">Empezar Conversacion</h2>
+                    </div>
+                        
+                    
+                        <div class="card-body rounded-bottom bg-white ">
+                                <div class="row slideanim-'inline' " >
+                                    
+                                    {% for reseptor in reseptor %}
+                                        <center>
+                                            <a href="{% url 'MsgTravelMensaje' reseptor.username %}">
+                                                
+                                                <img class="img-fluid mx-auto" src="{{ reseptor.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
+                                                <h5 >{{reseptor.username}} |   </h5> 
+                                                        
+
+                                                <br>
+                                            </a>
+                                        </center>
+                                            
+                                        
+                                    {% endfor %}
+
+                                    
+                                </div>
+                        </div>
+                    
+                    <div class="card border-0">    
+                        <div class="card-header bg-success text-center p-2">
+                            <h2 class="text-white m-0">Chats</h2>
+                        </div>
+                        
+                            {% for chats in chats %}
+                                <a href="{% url 'MsgTravelEnConversacion' chats.reseptor %}">
+                                    
+                                    <h3>{{chats.reseptor}}</h3>
+                                    
+                                    
+                                </a>                           
+                        
+
+                            {% endfor %}
+                            
+                            {% for chats_reseptor in chats_reseptor %}
+                                <a href="{% url 'MsgTravelEnConversacion' chats_reseptor.emisor %}">
+                                    <h3>{{chats_reseptor.emisor}}</h3>
+                                </a>    
+                                
+                            {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-lg-0 ">
+            <a href="{% url 'AppTravelInicio' %}" class="navbar-brand">
+                <h2 class="m-0 text-primary"><span class="text-dark">TRAVEL</span>ER</h2>
+            </a>
+            
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                
+            <div class="collapse navbar-collapse justify-content-between " id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-2">
+                
+                    <a href="{% url 'AppTravelInicio' %}" class="nav-item nav-link">Inicio</a>
+                    <a href="{% url 'AppTravelVuelos'%}" class="nav-item nav-link">Vuelos</a>
+                    <a href="{% url 'AppTravelReservaHotel' %}" class="nav-item nav-link">Alojamientos</a>
+                    <a href="{% url 'AppTravelBusqueda' %}" class="nav-item nav-link">Busquedas</a>
+                    
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Paginas</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="{% url 'AppTravelBusqueda' %}" class="dropdown-item">About</a>
+                                <a href="single.html" class="dropdown-item">Blog Detail</a>
+                                <a href="destination.html" class="dropdown-item">Destination</a>
+                                <a href="guide.html" class="dropdown-item">Travel Guides</a>
+                                <a href="{% url 'UserTravelVerTestimonios' %}" class="dropdown-item" >Testimonios</a>
+                            </div>
+                        </div>
+                    
+                    {% if user.is_authenticated %}
+                        
+                        <a href="{% url 'UserTravelPerfil' %}"class=" nav-link">{{ user.get_username }}</a>
+                        <a class=" btn-primary nav-item nav-link" href="{% url 'UserTravelLogout' %}">Logout</a>
+                        <img src= "{{ user.avatar.imagen.url }}" alt="" style="width: 100px; height: 100px;">
+                    
+                    {% endif %}         
+    
+                    
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

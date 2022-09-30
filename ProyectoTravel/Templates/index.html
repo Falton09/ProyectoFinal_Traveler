@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <!-- Script de CKeditor -->
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+
+    <meta charset="utf-8">
+
+    {% block titulo %}
+    <title>TRAVELER</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    {% endblock %}
+
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css'%}" rel="stylesheet" />
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    {% include 'Base/navbar.html' %}
+
+    <!-- Navbar End -->
+
+
+
+    {% block inicio %}
+
+        <div class="container-fluid p-0">
+            <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="w-100" src="{% static 'img/carousel-1.jpg' %}" alt="Image">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 900px;">
+                                <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                                <h1 class="display-3 text-white mb-md-4">Descubramos el mundo juntos</h1>
+                                {% if not user.is_authenticated %}
+                                    <a href="{% url 'UserTravelRegistro'%}" class="btn btn-primary py-md-3 px-md-5 mt-2">Registrarse</a>
+                                    <a href="{% url 'UserTravelLogin' %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Iniciar Sesion</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+   
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h6>
+                <h1>Que Dicen Nuestros Clientes</h1>
+            </div>
+            <form action="" method="GET">
+                <div class="owl-carousell">
+    
+                    {% for testimonio in testimonios %}
+                        
+                        <a href="{% url 'UserTravelChatTestimonio' testimonio.id %}">
+                            <div class="text-center pb-4" >
+                                <img class="img-fluid mx-auto" src="{{ testimonio.user.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
+                                <h4>{{testimonio.titulo}}</h4>
+                                <div class="testimonial-text bg-white p-4 mt-n5" "text-truncate">        
+                                    
+                                    <p  class="mt-5">{{testimonio.texto | truncatechars:100 | safe }}</p>
+                                    <h5  class="text-truncate">{{testimonio.user}}</h5>
+                      
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+    {% endblock %}
+  
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    
+    
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class=" pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">TRAVEL</span>ER</h1>
+                </a>
+                
+            </div>
+        
+           
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#">Franco Pelayo</a>. All Rights Reserved.</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

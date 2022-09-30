@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+<title>TRAVELER - Reserva</title>
+{% endblock %}
+
+{% block inicio %}
+
+<form action="" method="POST" >
+    {% csrf_token %}
+                                
+    <div class="container-fluid booking mt-5 pb-5">
+        <div class="container pb-5">
+            <div class="bg-light shadow" style="padding: 60px;">
+                <div class="row align-items-center" style="min-height: 300px;">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                   Nombre del Hotel
+                                   {{ form.nombreH }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    
+                                    Numero de Personas
+                                    {{ form.num_personas }}
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    Dia de Entrada al Hotel
+                                    {{ form.dia_entrada }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    Dia de Salida al Hotel
+                                    {{ form.dia_salida }}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="btn btn-primary btn-block" type="submit" style="height: 40px; margin-top: 20px;" value="Enviar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> 
+                                
+{% endblock %}
+
+

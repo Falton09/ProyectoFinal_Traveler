@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>Mis - Testimonio</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+    <div class="container py-5">
+            <div class="row align-items-center">
+                    <div class="col-lg" >
+                        <div class="card-header bg-primary text-center p-4 ">
+                            <h1 class="text-white m-0">Mis Testimonio</h1>
+                        </div>
+                       
+                        {% for testimonio in testimonio %}
+                            <h3>{{testimonio.titulo}}</h3>
+                            {{testimonio.texto | safe}}
+                            <p>{{testimonio.fecha_publicacion}}</p>
+                            <a href="{% url 'UserTravelEditarTestimonio' testimonio.id %}" class="btn btn-info ">Editar</a>
+                            <a href="{% url 'UserTravelEliminarTestimonio' testimonio.id %}" class="btn btn-danger" >Eliminar</a>
+                            
+                            <hr>
+                        {% endfor %}
+                    </div>
+            </div>
+    </div>
+{% endblock %}
