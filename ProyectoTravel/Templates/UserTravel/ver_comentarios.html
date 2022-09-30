@@ -17,8 +17,8 @@
 
                             {{comentario.comentario | safe}}
                             <p>{{comentario.fecha_comentario}}</p>
-                            <a href="{% url 'UserTravelEditarComentarios' comentario.id %}" class="btn btn-info py-md-3 px-md-5 mt-2">Editar</a>
-                            <a href="{% url 'UserTravelEliminarComentarios' comentario.id %}" class="btn btn-danger py-md-3 px-md-5 mt-2" >Eliminar</a>
+                            <a href="{% url 'UserTravelEditarComentarios' comentario.id %}" class="btn btn-info">Editar</a>
+                            <a href="{% url 'UserTravelEliminarComentarios' comentario.id %}" class="btn btn-danger" >Eliminar</a>
                             <h1 class="card-header bg-primary text-center p-4 "></h1>
                             <hr>
                         {% endfor %}

@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block titulo %}
+<title>Mis Conversaciones</title>
+{% endblock %}
+
+{% block inicio %}
+
+
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg">
+                <div class="card border-0">
+                    <a href="{% url 'MsgTravelElegirReseptor' %}">Volver</a>
+                    <div class="card-header bg-success text-center p-4">
+                        <h2 class="text-white m-0">En Conversaciones con {{usuario}}</h2>
+                    </div>
+                    <div class="card-body rounded-bottom bg-white ">
+                            
+                            
+                                {% for chat in chat %}
+                                    <div class="text-right">
+                                        {{chat.emisor}}
+                                        {{chat.mensaje | safe}}
+                                        {{chat.fecha_creacion_mensaje}}
+                                    </div>   
+
+                                    <hr>
+                                    <div class="text-left">
+                                            {{chat.reseptor}}
+                                            {{chat.mensaje_reseptor | safe}}
+                                            {{chat.fecha_creacion_mensaje}}
+                                    </div>
+                            
+                                {% endfor %}
+                            
+                                        
+                                
+                              
+                                <form action="" method="POST" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                
+                                    {{ form }} 
+                                
+                                
+                                    <input class="btn btn-success " type="submit"  value="Enviar">
+
+                                </form> 
+                                
+                                
+                            
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

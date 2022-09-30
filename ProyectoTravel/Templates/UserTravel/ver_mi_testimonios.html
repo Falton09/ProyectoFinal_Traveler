@@ -17,8 +17,8 @@
                             <h3>{{testimonio.titulo}}</h3>
                             {{testimonio.texto | safe}}
                             <p>{{testimonio.fecha_publicacion}}</p>
-                            <a href="{% url 'UserTravelEditarTestimonio' testimonio.id %}" class="btn btn-info py-md-3 px-md-5 mt-2">Editar</a>
-                            <a href="{% url 'UserTravelEliminarTestimonio' testimonio.id %}" class="btn btn-danger py-md-3 px-md-5 mt-2" >Eliminar</a>
+                            <a href="{% url 'UserTravelEditarTestimonio' testimonio.id %}" class="btn btn-info ">Editar</a>
+                            <a href="{% url 'UserTravelEliminarTestimonio' testimonio.id %}" class="btn btn-danger" >Eliminar</a>
                             
                             <hr>
                         {% endfor %}

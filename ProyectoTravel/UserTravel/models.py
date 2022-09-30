@@ -17,7 +17,7 @@ class Testimonio(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-       return f"{self.titulo}\n{self.texto}\n{self.fecha_publicacion}"
+       return f"Titulo:{self.titulo},Usuario:{self.user}"
 
 
 class ComentarioTestimonio(models.Model):
