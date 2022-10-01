@@ -26,36 +26,28 @@ def elegir_reseptor(request):
     return render(request, 'MsgTravel/elejir_reseptor.html',contexto)
 
 def mensaje(request,username):
-    if request.method == 'POST':
-        form = EnvioMensaje(request.POST)
+    user = request.user.username
+    users= Hilo.objects.filter(emisor=user,reseptor=username)
+    users1= Hilo.objects.filter(emisor=username,reseptor=user)
+   
+    if users or users1:
+        messages.info(request, 'ya esta en conversacion con este Usuario')
+        return redirect('MsgTravelElegirReseptor')
+    else:
+        user = request.user.username
+        hilos= Hilo(emisor=user,reseptor=username)
+        hilos.save()
+        return redirect('MsgTravelElegirReseptor')
 
-        if form.is_valid() :
-            data = form.cleaned_data
-            user = request.user
-
-            mensaje= Mensajeria(emisor=user,reseptor=username,mensaje=data.get('mensaje'))
-            mensaje.save()
-            try:
-                user = request.user.username
-                hilos= Hilo(emisor=user,reseptor=username)
-                hilos.save()
-            except:
-                messages.info(request, 'Usted ya esta en conversacion con este Usuario')
-
-            return redirect('MsgTravelElegirReseptor')
-
-    contexto = {
-        'form':EnvioMensaje(),
-        'usuario':username
-
-    }
-    return render(request, 'MsgTravel/enviar_mensaje.html',contexto)
+ 
 
 def en_conversacion(request,reseptor):
     user=request.user.username
-    emisor1=(Hilo.objects.all().values('emisor'))[0]
+    # emisor1=(Hilo.objects.all().values('emisor'))[0]
+    # emisor2=(Hilo.objects.all().values('reseptor'))[0]
+    emisore=Hilo.objects.filter(emisor=user,reseptor=reseptor)
     
-    if user in emisor1.values():
+    if emisore:
         chat = Mensajeria.objects.filter(emisor=user,reseptor=reseptor)
         orden1="text-right" 
         orden2="text-left"
@@ -71,7 +63,8 @@ def en_conversacion(request,reseptor):
         if form.is_valid() :
             data = form.cleaned_data
             user = request.user.username
-            if (user in emisor1.values()):
+            
+            if emisore:
                 mensaje=Mensajeria(emisor=user,reseptor=reseptor,mensaje=data.get('mensaje'))
                 mensaje.save()
                 messages.info(request, 'Mensaje Enviado')
