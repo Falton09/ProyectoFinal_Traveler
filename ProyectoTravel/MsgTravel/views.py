@@ -10,6 +10,7 @@ def elegir_reseptor(request):
     
     user=request.user.username
     chats=Hilo.objects.filter(emisor=user)
+    chats_reseptor=Hilo.objects.filter(reseptor=user)
     
     
     reseptor1=User.objects.all().exclude(username=request.user)
@@ -18,6 +19,7 @@ def elegir_reseptor(request):
         
         'reseptor':reseptor1,
         'chats':chats,
+        'chats_reseptor':chats_reseptor,
         
 
     }
@@ -54,10 +56,13 @@ def en_conversacion(request,reseptor):
     emisor1=(Hilo.objects.all().values('emisor'))[0]
     
     if user in emisor1.values():
-        chat = Mensajeria.objects.filter(emisor=user,reseptor=reseptor) 
+        chat = Mensajeria.objects.filter(emisor=user,reseptor=reseptor)
+        orden1="text-right" 
+        orden2="text-left"
     else:
         chat = Mensajeria.objects.filter(reseptor=user,emisor=reseptor)
-   
+        orden1="text-left"
+        orden2="text-right"
 
     if request.method == 'POST':
        
@@ -84,7 +89,8 @@ def en_conversacion(request,reseptor):
     contexto = {
         'form':EnvioMensaje(),
         'chat':chat,
- 
+        'orden1':orden1,
+        'orden2':orden2, 
         'usuario':reseptor,
         
         
