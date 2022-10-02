@@ -20,7 +20,7 @@
                                     
                                     {% for reseptor in reseptor %}
                                         <center>
-                                            <a href="{% url 'MsgTravelMensaje' reseptor.username %}">
+                                            <a href="{% url 'MsgTravelHilos' reseptor.username %}">
                                                 
                                                 <img class="img-fluid mx-auto" src="{{ reseptor.avatar.imagen.url }}" style="width: 80px; height: 80px;" >
                                                 <h5 >{{reseptor.username}} |   </h5> 

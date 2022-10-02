@@ -25,7 +25,7 @@ def elegir_reseptor(request):
     }
     return render(request, 'MsgTravel/elejir_reseptor.html',contexto)
 
-def mensaje(request,username):
+def hilos(request,username):
     user = request.user.username
     users= Hilo.objects.filter(emisor=user,reseptor=username)
     users1= Hilo.objects.filter(emisor=username,reseptor=user)
@@ -43,8 +43,7 @@ def mensaje(request,username):
 
 def en_conversacion(request,reseptor):
     user=request.user.username
-    # emisor1=(Hilo.objects.all().values('emisor'))[0]
-    # emisor2=(Hilo.objects.all().values('reseptor'))[0]
+    
     emisore=Hilo.objects.filter(emisor=user,reseptor=reseptor)
     
     if emisore:
