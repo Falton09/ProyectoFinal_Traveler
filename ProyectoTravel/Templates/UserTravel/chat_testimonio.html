@@ -30,6 +30,9 @@
                          Fecha: {{comentario.fecha_comentario}}
                         <br>
                         <hr>
+                        {% if user.is_superuser == 1 %}
+                            <a href="{% url 'UserTravelEliminarComentarios' comentario.id  %}"class="text-danger"><b>[X]Elimiar Comentario</b></a>
+                        {% endif %}
                         <h1 class="card-header bg-primary text-center p-4 "></h1>
                     {% endfor %}
 

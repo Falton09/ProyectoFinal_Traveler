@@ -109,6 +109,9 @@
                                 </div>
                             </div>
                         </a>
+                        {% if user.is_superuser == 1 %}
+                            <a href="{% url 'UserTravelEliminarTestimonio' testimonio.id  %}"class="text-danger"><b>[X]Elimiar Testimoino</b></a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </form>

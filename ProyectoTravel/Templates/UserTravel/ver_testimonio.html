@@ -22,6 +22,10 @@
                             {{testimonios.texto | safe}}
                             <p>{{testimonios.fecha_publicacion}}</p>
                             <b><a href="{% url 'UserTravelChatTestimonio' testimonios.id %}">Comentar</a></b>
+                            <br>
+                            {% if user.is_superuser == 1 %}
+                                <a href="{% url 'UserTravelEliminarTestimonio' testimonios.id  %}"class="text-danger"><b>[X]Elimiar Testimonio</b></a>
+                            {% endif %}
                             
                             <hr>
                         {% endfor %}

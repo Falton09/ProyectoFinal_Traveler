@@ -105,6 +105,10 @@ def busqueda(request):
     return render(request, 'AppTravel/busqueda.html',contexto)
 
 
+def about(request):
+
+    return render(request, 'AppTravel/about.html')
+
 
 
 
