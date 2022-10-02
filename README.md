@@ -12,6 +12,7 @@ Esta web solo se podra usar si se registran/loguean. De lo contrario solo podran
 para que el Proyecto funcione debemos ejecutar el comando:
 - pip install -r requirements.txt
 - pip install django-ckeditor
+
 Para mas detalle se puede ver el archivo "requirements.txt"
 
 # Creador ✒
