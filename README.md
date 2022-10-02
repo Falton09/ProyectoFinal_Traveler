@@ -5,7 +5,7 @@ Se agrego un apartado de Testimonios con la opcion de comentar y un sistema de m
 
 -Tiene un usuario admin precargado por si las duas. User:admin, Password:admin
 
-Esta web solo se podra usar si se registran/loguean, de lo contrario solo podran ver el los tensimonios y las paginas de: Vuelos y Alojamientos pero sin realizar ningun alta de estas 
+Esta web solo se podra usar si se registran/loguean. De lo contrario solo podran ver los tensimonios y las paginas de: Vuelos y Alojamientos pero sin realizar ningun alta de estas 
 
 # Que Instalar
 
