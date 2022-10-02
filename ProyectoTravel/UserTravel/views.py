@@ -1,8 +1,6 @@
-from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from UserTravel.forms import UserEditFrom, UserRegisterForm, AvatarForm,Testimonios,Comentario
