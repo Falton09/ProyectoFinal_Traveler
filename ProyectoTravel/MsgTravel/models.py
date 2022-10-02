@@ -9,6 +9,9 @@ class Mensajeria(models.Model):
     mensaje_reseptor = RichTextField(blank=True)
     fecha_creacion_mensaje = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"emisor:{self.emisor},reseptor:{self.reseptor}"
+
 class Hilo(models.Model):
     emisor= models.CharField(max_length=50,)
     reseptor= models.CharField(max_length=50, )

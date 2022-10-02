@@ -24,4 +24,6 @@ class ComentarioTestimonio(models.Model):
     user_comentario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     comentario= RichTextField()
     fecha_comentario = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+       return f"ID_Testimonios:{self.id_testimonio},Comentario de:{self.user_comentario}, Fecha:{self.fecha_comentario}"
 
