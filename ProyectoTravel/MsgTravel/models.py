@@ -1,6 +1,4 @@
-from enum import unique
 from django.db import models
-from datetime import datetime
 from ckeditor.fields import RichTextField
 
 class Mensajeria(models.Model):
