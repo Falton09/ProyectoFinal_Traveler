@@ -22,7 +22,8 @@ Para mas detalle se puede ver el archivo "requirements.txt"
 # Creador ✒
 Realizado por: Franco Pelayo.
 
-Video 🎞
+# Video 🎞
+
 https://youtu.be/Ra67GNSdBX0
 
 No mostre mucho de la funcion de Reservas y Vuelos ya que eso no era parte del requerimiento del proyecto
