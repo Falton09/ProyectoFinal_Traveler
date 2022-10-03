@@ -13,6 +13,12 @@ para que el Proyecto funcione debemos ejecutar el comando:
 - pip install -r requirements.txt
 - pip install django-ckeditor
 
+Y no se olviden de hacer el:
+
+                            - python manage.py makemigration
+
+                            - python manage.py migrate
+
 Para mas detalle se puede ver el archivo "requirements.txt"
 
 # Creador ✒
