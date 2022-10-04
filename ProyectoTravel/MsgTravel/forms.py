@@ -9,8 +9,4 @@ class EnvioMensaje(forms.ModelForm):
         fields=['mensaje']
         labels= {'mensaje': (""),}
 
-        
-            
-                
-
 

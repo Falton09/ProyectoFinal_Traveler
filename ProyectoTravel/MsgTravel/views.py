@@ -66,14 +66,14 @@ def en_conversacion(request,reseptor):
                 mensaje=Mensajeria(emisor=user,reseptor=reseptor,mensaje=data.get('mensaje'))
                 mensaje.save()
                 messages.info(request, 'Mensaje Enviado')
-                return redirect('MsgTravelElegirReseptor')               
+                return redirect('MsgTravelEnConversacion', reseptor)               
                 
 
             else:
                 mensaje= Mensajeria(emisor=reseptor,reseptor=user,mensaje_reseptor=data.get('mensaje'))
                 mensaje.save()
                 messages.info(request, 'Mensaje Enviado')
-                return redirect('MsgTravelElegirReseptor')                
+                return redirect('MsgTravelEnConversacion', reseptor)                
                 
 
 
@@ -83,8 +83,6 @@ def en_conversacion(request,reseptor):
         'orden1':orden1,
         'orden2':orden2, 
         'usuario':reseptor,
-        
-        
 
     }
     return render(request, 'MsgTravel/chat.html',contexto)
