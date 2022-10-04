@@ -1,5 +1,3 @@
-from distutils.command.clean import clean
-from turtle import clear
 from django.shortcuts import render,redirect
 from MsgTravel.forms import EnvioMensaje
 from MsgTravel.models import Mensajeria, Hilo
