@@ -1,3 +1,5 @@
+from distutils.command.clean import clean
+from turtle import clear
 from django.shortcuts import render,redirect
 from MsgTravel.forms import EnvioMensaje
 from MsgTravel.models import Mensajeria, Hilo
@@ -43,7 +45,6 @@ def hilos(request,username):
 
 def en_conversacion(request,reseptor):
     user=request.user.username
-    
     emisore=Hilo.objects.filter(emisor=user,reseptor=reseptor)
     
     if emisore:
@@ -56,25 +57,25 @@ def en_conversacion(request,reseptor):
         orden2="text-right"
 
     if request.method == 'POST':
-       
-        form = EnvioMensaje(request.POST)
-        print(form)
-        if form.is_valid() :
-            data = form.cleaned_data
+        
+        formu = EnvioMensaje(request.POST)
+        
+        if formu.is_valid() :
+            data = formu.cleaned_data
             user = request.user.username
             
             if emisore:
                 mensaje=Mensajeria(emisor=user,reseptor=reseptor,mensaje=data.get('mensaje'))
                 mensaje.save()
                 messages.info(request, 'Mensaje Enviado')
-                return redirect('MsgTravelElegirReseptor')
+                return redirect('MsgTravelElegirReseptor')               
                 
 
             else:
                 mensaje= Mensajeria(emisor=reseptor,reseptor=user,mensaje_reseptor=data.get('mensaje'))
                 mensaje.save()
                 messages.info(request, 'Mensaje Enviado')
-                return redirect('MsgTravelElegirReseptor')
+                return redirect('MsgTravelElegirReseptor')                
                 
 
 

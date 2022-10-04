@@ -18,20 +18,22 @@
                             
                             
                                 {% for chat in chat %}
-                                    <div class="{{orden1}}">
-                                        {{chat.emisor}}
-                                        {{chat.mensaje | safe}}
-                                        {{chat.fecha_creacion_mensaje}}
-                                    </div>   
-
-                                    <hr>
-                                    <div class="{{orden2}}">
-                                            {{chat.reseptor}}
-                                            {{chat.mensaje_reseptor | safe}}
+                                    {% if chat.mensaje != "" %}
+                                        <div class="{{orden1}}">
+                                            {{chat.emisor}}
+                                            {{chat.mensaje | safe}}
                                             {{chat.fecha_creacion_mensaje}}
-                                    </div>
-                                    <hr>
-                            
+                                        </div>   
+
+                                        <hr>
+                                    {% else %}
+                                        <div class="{{orden2}}">
+                                                {{chat.reseptor}}
+                                                {{chat.mensaje_reseptor | safe}}
+                                                {{chat.fecha_creacion_mensaje}}
+                                        </div>
+                                        <hr>
+                                    {% endif %}
                                 {% endfor %}
                             
                                         
